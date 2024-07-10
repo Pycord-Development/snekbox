@@ -6,6 +6,10 @@ from dataclasses import dataclass
 from functools import cached_property
 from pathlib import Path
 
+from .errors import IllegalPathError, ParsingError
+
+__all__ = ("safe_path", "FileAttachment")
+
 
 def safe_path(path: str) -> str:
     """
@@ -26,14 +30,6 @@ def safe_path(path: str) -> str:
         raise IllegalPathError(f"File path '{path}' may not traverse beyond root")
 
     return path
-
-
-class ParsingError(ValueError):
-    """Raised when an incoming content cannot be parsed."""
-
-
-class IllegalPathError(ParsingError):
-    """Raised when a request file has an illegal path."""
 
 
 @dataclass(frozen=True)
@@ -71,8 +67,17 @@ class FileAttachment:
         Args:
             file: The file to attach.
             relative_to: The root for the path name.
+        Raises:
+            IllegalPathError: If path name contains characters that can't be encoded in UTF-8
         """
         path = file.relative_to(relative_to) if relative_to else file
+
+        # Disallow filenames with chars that can't be encoded in UTF-8
+        try:
+            str(path).encode("utf-8")
+        except UnicodeEncodeError as e:
+            raise IllegalPathError("File paths may not contain invalid byte sequences") from e
+
         return cls(str(path), file.read_bytes())
 
     @property

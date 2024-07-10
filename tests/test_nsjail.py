@@ -9,9 +9,9 @@ from itertools import product
 from pathlib import Path
 from textwrap import dedent
 
-from snekbox.filesystem import Size
 from snekbox.nsjail import NsJail
 from snekbox.snekio import FileAttachment
+from snekbox.snekio.filesystem import Size
 
 
 class NsJailTests(unittest.TestCase):
@@ -233,7 +233,7 @@ class NsJailTests(unittest.TestCase):
             size = 32 * 1024 * 1024
 
             with open("file", "w") as f:
-                for _ in range((size // 1024) - 5):
+                for _ in range(size // 1024):
                     f.write(data)
 
             for i in range(100):
@@ -242,11 +242,25 @@ class NsJailTests(unittest.TestCase):
         ).strip()
         # A value higher than the actual memory needed is used to avoid the limit
         # on total file size being reached before the timeout when reading.
-        nsjail = NsJail(memfs_instance_size=512 * Size.MiB, files_timeout=1)
+        nsjail = NsJail(memfs_instance_size=128 * Size.MiB, files_timeout=0.1)
         result = nsjail.python3(["-c", code])
         self.assertEqual(result.returncode, None)
         self.assertEqual(
             result.stdout, "TimeoutError: Exceeded time limit while parsing attachments"
+        )
+        self.assertEqual(result.stderr, None)
+
+    def test_filename_encoding_illegal_chars(self):
+        code = dedent(
+            r"""
+            with open(b"\xC3.txt", "w") as f:
+                f.write("test")
+            """
+        ).strip()
+        result = self.eval_file(code)
+        self.assertEqual(result.returncode, None)
+        self.assertEqual(
+            result.stdout, "FileParsingError: invalid bytes in filename while parsing attachments"
         )
         self.assertEqual(result.stderr, None)
 
@@ -576,7 +590,7 @@ class NsJailCgroupTests(unittest.TestCase):
     # This should still pass for v2, even if this test isn't relevant.
     def test_cgroupv1(self):
         logging.getLogger("snekbox.nsjail").setLevel(logging.ERROR)
-        logging.getLogger("snekbox.utils.swap").setLevel(logging.ERROR)
+        logging.getLogger("snekbox.limits.swap").setLevel(logging.ERROR)
 
         config_base = dedent(
             """
