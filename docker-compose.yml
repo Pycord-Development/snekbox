@@ -2,6 +2,7 @@ version: "3.7"
 
 services:
   snekbox:
+    restart: always
     container_name: snekbox_dev
     hostname: snekbox_dev
     privileged: true
