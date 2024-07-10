@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.4
-FROM buildpack-deps:buster as builder-nsjail
+FROM buildpack-deps:bookworm as builder-nsjail
 
 WORKDIR /nsjail
 
@@ -17,7 +17,7 @@ RUN git clone -b master --single-branch https://github.com/google/nsjail.git . \
 RUN make
 
 # ------------------------------------------------------------------------------
-FROM buildpack-deps:buster as builder-py-base
+FROM buildpack-deps:bookworm as builder-py-base
 
 ENV PYENV_ROOT=/pyenv \
     PYTHON_CONFIGURE_OPTS='--disable-test-modules --enable-optimizations \
@@ -32,17 +32,11 @@ RUN apt-get -y update \
 COPY --link scripts/build_python.sh /
 
 # ------------------------------------------------------------------------------
-FROM builder-py-base as builder-py-3_11
-RUN git clone -b v2.3.24 --depth 1 https://github.com/pyenv/pyenv.git $PYENV_ROOT \
-    && /build_python.sh 3.11.4
-
-# ------------------------------------------------------------------------------
 FROM builder-py-base as builder-py-3_12
-RUN git clone -b v2.3.24 --depth 1 https://github.com/pyenv/pyenv.git $PYENV_ROOT \
-    && /build_python.sh 3.12.0rc1
-
+RUN git clone -b v2.3.36 --depth 1 https://github.com/pyenv/pyenv.git $PYENV_ROOT \
+    && /build_python.sh 3.12.2
 # ------------------------------------------------------------------------------
-FROM python:3.11-slim-buster as base
+FROM python:3.12-slim-bookworm as base
 
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1 \
     PIP_NO_CACHE_DIR=false
@@ -52,15 +46,14 @@ RUN apt-get -y update \
         gcc \
         git \
         libnl-route-3-200 \
-        libprotobuf17 \
+        libprotobuf32 \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --link --from=builder-nsjail /nsjail/nsjail /usr/sbin/
-COPY --link --from=builder-py-3_11 /lang/ /lang/
 COPY --link --from=builder-py-3_12 /lang/ /lang/
 
 RUN chmod +x /usr/sbin/nsjail \
-    && ln -s /lang/python/3.11/ /lang/python/default
+    && ln -s /lang/python/3.12/ /lang/python/default
 
 # ------------------------------------------------------------------------------
 FROM base as venv
