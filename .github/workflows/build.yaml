@@ -84,8 +84,8 @@ jobs:
           outputs: type=docker,dest=${{ env.artifact }}.tar
           cache-from: |
             ${{ steps.cache_config.outputs.cache_from }}
-            ghcr.io/python-discord/snekbox-base:latest
-            ghcr.io/python-discord/snekbox-venv:latest
+            ghcr.io/pycord-development/snekbox-base:latest
+            ghcr.io/pycord-development/snekbox-venv:latest
           cache-to: ${{ steps.cache_config.outputs.cache_to }}
           tags: ghcr.io/python-discord/snekbox-venv:${{ steps.version.outputs.version }}
 
