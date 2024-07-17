@@ -121,7 +121,7 @@ See [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 [2]: https://github.com/Pycord-Development/snekbox/actions/workflows/main.yaml?query=event%3Apush+branch%3Amain
 [3]: https://coveralls.io/repos/github/Pycord-Development/snekbox/badge.svg?branch=main
 [4]: https://coveralls.io/github/Pycord-Development/snekbox?branch=main
-[5]: https://raw.githubusercontent.com/Pycord-Development/branding/main/logos/badge/badge_github.svg
+[5]: https://raw.githubusercontent.com/python-discord/branding/main/logos/badge/badge_github.svg
 [6]: https://discord.gg/pycord
 [7]: https://github.com/google/nsjail/blob/master/config.proto
 [`gunicorn.conf.py`]: config/gunicorn.conf.py
