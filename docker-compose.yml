@@ -9,7 +9,7 @@ services:
     image: ghcr.io/python-discord/snekbox${IMAGE_SUFFIX:--venv:dev}
     pull_policy: never
     ports:
-     - "8060:8060"
+     - "127.0.0.1:8060:8060"
     init: true
     ipc: private
     tty: true
