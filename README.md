@@ -42,7 +42,7 @@ See [`snekapi.py`] and [`resources`] for API documentation.
 A Docker image is available in the [GitHub Container Registry]. A container can be started with the following command, which will also pull the image if it doesn't currently exist locally:
 
 ```
-docker run --ipc=none --privileged -p 8060:8060 ghcr.io/python-discord/snekbox
+docker run --ipc=none --privileged -p 8060:8060 ghcr.io/python-development/snekbox
 ```
 
 To run it in the background, use the `-d` option. See the documentation on [`docker run`] for more information.

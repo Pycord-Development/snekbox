@@ -36,7 +36,7 @@ report: setup
 
 .PHONY: build
 build:
-	docker build -t ghcr.io/python-discord/snekbox:latest .
+	docker build -t ghcr.io/python-development/snekbox:latest .
 
 .PHONY: devsh
 devsh:

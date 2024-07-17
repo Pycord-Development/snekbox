@@ -84,7 +84,7 @@ jobs:
           file: ./Dockerfile
           target: base
           push: true
-          cache-from: ghcr.io/python-discord/snekbox-base:latest
+          cache-from: ghcr.io/python-development/snekbox-base:latest
           cache-to: type=inline
           tags: |
             ghcr.io/pycord-development/snekbox-base:latest
@@ -100,7 +100,7 @@ jobs:
           push: true
           cache-from: |
             ghcr.io/pycord-development/snekbox-base:latest
-            ghcr.io/python-discord/snekbox-venv:latest
+            ghcr.io/python-development/snekbox-venv:latest
           cache-to: type=inline
           tags: |
             ghcr.io/pycord-development/snekbox-venv:latest

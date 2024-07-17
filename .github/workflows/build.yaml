@@ -87,7 +87,7 @@ jobs:
             ghcr.io/pycord-development/snekbox-base:latest
             ghcr.io/pycord-development/snekbox-venv:latest
           cache-to: ${{ steps.cache_config.outputs.cache_to }}
-          tags: ghcr.io/python-discord/snekbox-venv:${{ steps.version.outputs.version }}
+          tags: ghcr.io/python-development/snekbox-venv:${{ steps.version.outputs.version }}
 
       # Make the image available as an artifact so other jobs will be able to
       # download it.

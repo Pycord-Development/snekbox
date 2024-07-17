@@ -16,14 +16,14 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
     "Topic :: Security",
     "Topic :: Software Development :: Interpreters",
 ]
 dynamic = ["version"]
 
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 dependencies = [
     "falcon>=3.0.1",
     "jsonschema>=4.0",
@@ -35,8 +35,8 @@ gunicorn = ["gunicorn>=20.1"]  # Lowest which supports wsgi_app in config.
 sentry = ["sentry-sdk[falcon]>=1.16.0"] # Minimum of 1.16.0 required for Falcon 3.0 support (getsentry/sentry-python#1733)
 
 [project.urls]
-source = "https://github.com/python-discord/snekbox"
-tracker = "https://github.com/python-discord/snekbox/issues"
+source = "https://github.com/python-development/snekbox"
+tracker = "https://github.com/python-development/snekbox/issues"
 
 [project.scripts]
 snekbox = "snekbox.__main__:main"
@@ -63,7 +63,7 @@ relative_files = true
 
 [tool.black]
 line-length = 100
-target-version = ["py311"]
+target-version = ["py312"]
 force-exclude = "snekbox/config_pb2.py"
 
 [tool.isort]
