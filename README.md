@@ -117,12 +117,12 @@ The packages will be installed to the user site within `/snekbox/user_base`. To 
 See [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 
 
-[1]: https://github.com/python-discord/snekbox/workflows/main/badge.svg?branch=main
-[2]: https://github.com/python-discord/snekbox/actions/workflows/main.yaml?query=event%3Apush+branch%3Amain
-[3]: https://coveralls.io/repos/github/python-discord/snekbox/badge.svg?branch=main
-[4]: https://coveralls.io/github/python-discord/snekbox?branch=main
-[5]: https://raw.githubusercontent.com/python-discord/branding/main/logos/badge/badge_github.svg
-[6]: https://discord.gg/python
+[1]: https://github.com/Pycord-Development/snekbox/workflows/main/badge.svg?branch=main
+[2]: https://github.com/Pycord-Development/snekbox/actions/workflows/main.yaml?query=event%3Apush+branch%3Amain
+[3]: https://coveralls.io/repos/github/Pycord-Development/snekbox/badge.svg?branch=main
+[4]: https://coveralls.io/github/Pycord-Development/snekbox?branch=main
+[5]: https://raw.githubusercontent.com/Pycord-Development/branding/main/logos/badge/badge_github.svg
+[6]: https://discord.gg/pycord
 [7]: https://github.com/google/nsjail/blob/master/config.proto
 [`gunicorn.conf.py`]: config/gunicorn.conf.py
 [`snekbox.cfg`]: config/snekbox.cfg
@@ -137,5 +137,5 @@ See [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 [worker count]: https://docs.gunicorn.org/en/latest/design.html#how-many-workers
 [sentry release]: https://docs.sentry.io/platforms/python/configuration/releases/
 [data source name]: https://docs.sentry.io/product/sentry-basics/dsn-explainer/
-[GitHub Container Registry]: https://github.com/orgs/python-discord/packages/container/package/snekbox
+[GitHub Container Registry]: https://github.com/orgs/Pycord-Development/packages/container/package/snekbox
 [`NsJail`]: snekbox/nsjail.py
