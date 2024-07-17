@@ -51,13 +51,13 @@ jobs:
           file: ./Dockerfile
           push: true
           cache-from: |
-            ghcr.io/python-discord/snekbox-base:latest
-            ghcr.io/python-discord/snekbox-venv:latest
-            ghcr.io/python-discord/snekbox:latest
+            ghcr.io/pycord-development/snekbox-base:latest
+            ghcr.io/pycord-development/snekbox-venv:latest
+            ghcr.io/pycord-development/snekbox:latest
           cache-to: type=inline
           tags: |
-            ghcr.io/python-discord/snekbox:latest
-            ghcr.io/python-discord/snekbox:${{ inputs.version }}
+            ghcr.io/pycord-development/snekbox:latest
+            ghcr.io/pycord-development/snekbox:${{ inputs.version }}
 
       # Deploy to Kubernetes.
       - name: Install kubectl
@@ -74,7 +74,7 @@ jobs:
         with:
           namespace: snekbox
           manifests: deployment.yaml
-          images: 'ghcr.io/python-discord/snekbox:${{ inputs.version }}'
+          images: 'ghcr.io/pycord-development/snekbox:${{ inputs.version }}'
 
       # Push the base image to GHCR, with an inline cache manifest.
       - name: Push base image
@@ -87,8 +87,8 @@ jobs:
           cache-from: ghcr.io/python-discord/snekbox-base:latest
           cache-to: type=inline
           tags: |
-            ghcr.io/python-discord/snekbox-base:latest
-            ghcr.io/python-discord/snekbox-base:${{ inputs.version }}
+            ghcr.io/pycord-development/snekbox-base:latest
+            ghcr.io/pycord-development/snekbox-base:${{ inputs.version }}
 
       # Push the venv image to GHCR, with an inline cache manifest.
       - name: Push venv image
@@ -99,9 +99,9 @@ jobs:
           target: venv
           push: true
           cache-from: |
-            ghcr.io/python-discord/snekbox-base:latest
+            ghcr.io/pycord-development/snekbox-base:latest
             ghcr.io/python-discord/snekbox-venv:latest
           cache-to: type=inline
           tags: |
-            ghcr.io/python-discord/snekbox-venv:latest
-            ghcr.io/python-discord/snekbox-venv:${{ inputs.version }}
+            ghcr.io/pycord-development/snekbox-venv:latest
+            ghcr.io/pycord-development/snekbox-venv:${{ inputs.version }}
