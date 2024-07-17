@@ -1,4 +1,3 @@
-[![Discord][5]][6]
 [![Build Status][1]][2]
 [![Coverage Status][3]][4]
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -121,7 +120,7 @@ See [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 [2]: https://github.com/Pycord-Development/snekbox/actions/workflows/main.yaml?query=event%3Apush+branch%3Amain
 [3]: https://coveralls.io/repos/github/Pycord-Development/snekbox/badge.svg?branch=main
 [4]: https://coveralls.io/github/Pycord-Development/snekbox?branch=main
-[5]: https://raw.githubusercontent.com/python-discord/branding/main/logos/badge/badge_github.svg
+[5]: https://pycord.dev/_next/static/media/logo.2762350e.png
 [6]: https://discord.gg/pycord
 [7]: https://github.com/google/nsjail/blob/master/config.proto
 [`gunicorn.conf.py`]: config/gunicorn.conf.py
