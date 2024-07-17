@@ -4,7 +4,7 @@ shopt -s inherit_errexit
 
 py_version="${1}"
 
-# Install Python interpreter under e.g. /lang/python/3.11/ (no patch version).
+# Install Python interpreter under e.g. /lang/python/3.12/ (no patch version).
 "${PYENV_ROOT}/plugins/python-build/bin/python-build" \
     "${py_version}" \
     "/lang/python/${py_version%.*}"
